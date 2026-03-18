@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tienda La Esquina – Abarrotes, bebidas, snacks y más. Abierto todos los días de 7AM a 10PM. Calle Hidalgo 52, Ciudad de México." />
+  <title>Tienda La Esquina – Todo lo que necesitas, cerca de ti</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ─────────────────────────────────────────────
+       TOKENS
+    ───────────────────────────────────────────── */
+    :root {
+      --navy:        #0f2744;
+      --blue:        #1d5cb4;
+      --blue-mid:    #2d72d2;
+      --blue-soft:   #e8f0fb;
+      --green:       #18a558;
+      --green-dark:  #0e7a3f;
+      --green-soft:  #e3f7ec;
+      --white:       #ffffff;
+      --surface:     #f7f9fc;
+      --border:      #e4e9f2;
+      --muted:       #8494ae;
+      --body:        #3a4a63;
+      --heading:     #0f2744;
+      --sp-xs: .375rem;
+      --sp-sm: .75rem;
+      --sp-md: 1.25rem;
+      --sp-lg: 2rem;
+      --sp-xl: 3rem;
+      --sp-2xl: 5rem;
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 22px;
+      --r-full: 9999px;
+      --e-1: 0 1px 4px rgba(15,39,68,.06);
+      --e-2: 0 4px 16px rgba(15,39,68,.10);
+      --e-3: 0 12px 40px rgba(15,39,68,.14);
+      --e-4: 0 24px 64px rgba(15,39,68,.18);
+      --ease: cubic-bezier(.4, 0, .2, 1);
+      --dur:  .32s;
+    }
+
+    /* ─────────────────────────────────────────────
+       RESET
+    ───────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--body);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a   { text-decoration: none; color: inherit; }
+    ul  { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+
+    /* ─────────────────────────────────────────────
+       LAYOUT
+    ───────────────────────────────────────────── */
+    .wrap { width: min(90%, 1120px); margin-inline: auto; }
+    .section      { padding-block: var(--sp-2xl); }
+    .section--alt { background: var(--surface); }
+
+    .section__intro { max-width: 580px; }
+    .section__intro--c {
+      margin-inline: auto;
+      text-align: center;
+    }
+    .section__intro--c .tag { justify-content: center; }
+    .section__intro--c .tag::before { display: none; }
+
+    /* ─────────────────────────────────────────────
+       TYPOGRAPHY
+    ───────────────────────────────────────────── */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: var(--sp-sm);
+    }
+    .tag::before {
+      content: '';
+      display: block;
+      width: 28px; height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    h1,h2,h3 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.15; color: var(--heading); }
+
+    .display {
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+    }
+    .h2 {
+      font-size: clamp(1.85rem, 3.5vw, 2.7rem);
+      font-weight: 700;
+      letter-spacing: -.01em;
+    }
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-top: var(--sp-sm);
+    }
+
+    /* ─────────────────────────────────────────────
+       BUTTONS
+    ───────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: .78rem 1.7rem;
+      border-radius: var(--r-full);
+      font-size: .92rem;
+      font-weight: 700;
+      letter-spacing: .01em;
+      transition:
+        transform var(--dur) var(--ease),
+        box-shadow var(--dur) var(--ease),
+        background var(--dur) var(--ease);
+      white-space: nowrap;
+    }
+    .btn:hover  { transform: translateY(-2px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn--green {
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(24,165,88,.38);
+    }
+    .btn--green:hover { background: var(--green-dark); box-shadow: 0 8px 28px rgba(24,165,88,.5); }
+
+    .btn--blue {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(29,92,180,.32);
+    }
+    .btn--blue:hover { background: var(--navy); box-shadow: 0 8px 28px rgba(15,39,68,.35); }
+
+    .btn--ghost {
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      border: 1.5px solid rgba(255,255,255,.4);
+      backdrop-filter: blur(6px);
+    }
+    .btn--ghost:hover { background: rgba(255,255,255,.22); }
+
+    .btn--sm { padding: .52rem 1.1rem; font-size: .82rem; }
+
+    /* ─────────────────────────────────────────────
+       NAVBAR
+    ───────────────────────────────────────────── */
+    .navbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 900;
+      transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    }
+    .navbar.is-scrolled {
+      background: rgba(255,255,255,.97);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 1px 0 var(--border), var(--e-1);
+    }
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .logo__mark {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue-mid), var(--green));
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(29,92,180,.3);
+      flex-shrink: 0;
+    }
+    .logo__name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.05rem;
+      color: var(--navy);
+      transition: color var(--dur) var(--ease);
+    }
+    .navbar:not(.is-scrolled) .logo__name { color: #fff; }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav__links a {
+      font-size: .875rem;
+      font-weight: 600;
+      color: var(--body);
+      position: relative;
+      padding-bottom: 2px;
+      transition: color var(--dur) var(--ease);
+    }
+    .navbar:not(.is-scrolled) .nav__links a { color: rgba(255,255,255,.82); }
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: var(--green);
+      border-radius: 2px;
+      transition: width var(--dur) var(--ease);
+    }
+    .nav__links a:hover { color: var(--navy); }
+    .navbar:not(.is-scrolled) .nav__links a:hover { color: #fff; }
+    .nav__links a:hover::after { width: 100%; }
+    .nav__cta { margin-left: .5rem; }
+
+    /* Burger */
+    .nav__burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px; height: 36px;
+      padding: 4px;
+    }
+    .nav__burger span {
+      display: block;
+      width: 100%; height: 2px;
+      background: var(--navy);
+      border-radius: 2px;
+      transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+    }
+    .navbar:not(.is-scrolled) .nav__burger span { background: #fff; }
+    .nav__burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__burger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav__burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Drawer */
+    .nav__drawer {
+      position: fixed;
+      inset: 68px 0 0 0;
+      background: #fff;
+      transform: translateX(100%);
+      transition: transform .38s var(--ease);
+      z-index: 850;
+      overflow-y: auto;
+      padding: var(--sp-lg) var(--sp-lg) var(--sp-xl);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: var(--e-4);
+    }
+    .nav__drawer.is-open { transform: translateX(0); }
+    .nav__drawer a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: .875rem 1rem;
+      border-radius: var(--r-md);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--body);
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+    }
+    .nav__drawer a:hover { background: var(--blue-soft); color: var(--blue); }
+    .nav__drawer a i { width: 20px; text-align: center; color: var(--blue); font-size: .9rem; }
+    .nav__drawer__cta {
+      margin-top: var(--sp-md) !important;
+      background: var(--green) !important;
+      color: #fff !important;
+      justify-content: center !important;
+      border-radius: var(--r-full) !important;
+    }
+    .nav__drawer__cta:hover { background: var(--green-dark) !important; }
+    .nav__drawer__cta i { color: #fff !important; }
+
+    /* ─────────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(155deg,#081a30 0%,#0f2744 30%,#1a4a7a 65%,#0e5c31 100%);
+    }
+    .hero__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: .45;
+    }
+    .hero__dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .hero__orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero__orb--1 {
+      width: 600px; height: 600px;
+      top: -200px; right: -200px;
+      background: radial-gradient(circle, rgba(29,92,180,.3) 0%, transparent 65%);
+    }
+    .hero__orb--2 {
+      width: 500px; height: 500px;
+      bottom: -180px; left: -150px;
+      background: radial-gradient(circle, rgba(24,165,88,.25) 0%, transparent 65%);
+    }
+    .hero__orb--3 {
+      width: 280px; height: 280px;
+      top: 38%; right: 16%;
+      background: radial-gradient(circle, rgba(45,114,210,.18) 0%, transparent 65%);
+    }
+    .hero__body {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding-block: 110px 80px;
+    }
+    .hero__layout {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+    }
+    .hero__content { max-width: 660px; }
+
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: .42rem 1rem;
+      border-radius: var(--r-full);
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,.88);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-md);
+      opacity: 0;
+      animation: slideUp .7s .15s var(--ease) forwards;
+    }
+    .hero__eyebrow i { color: var(--green); }
+
+    .hero__title {
+      color: #fff;
+      margin-bottom: var(--sp-md);
+      opacity: 0;
+      animation: slideUp .7s .3s var(--ease) forwards;
+    }
+    .hero__title em {
+      font-style: normal;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(255,255,255,.55);
+    }
+
+    .hero__desc {
+      font-size: clamp(.98rem, 1.8vw, 1.15rem);
+      color: rgba(255,255,255,.72);
+      line-height: 1.7;
+      margin-bottom: var(--sp-lg);
+      opacity: 0;
+      animation: slideUp .7s .45s var(--ease) forwards;
+    }
+    .hero__actions {
+      display: flex;
+      gap: var(--sp-sm);
+      flex-wrap: wrap;
+      margin-bottom: var(--sp-xl);
+      opacity: 0;
+      animation: slideUp .7s .6s var(--ease) forwards;
+    }
+    .hero__chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      opacity: 0;
+      animation: slideUp .7s .75s var(--ease) forwards;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: .32rem .85rem;
+      border-radius: var(--r-full);
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(6px);
+      color: rgba(255,255,255,.85);
+      font-size: .78rem;
+      font-weight: 600;
+      transition: background var(--dur) var(--ease);
+    }
+    .chip:hover { background: rgba(255,255,255,.18); }
+    .chip i { color: var(--green); font-size: .8rem; }
+
+    /* Hours card */
+    .hero__card {
+      background: rgba(255,255,255,.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: var(--r-lg);
+      padding: var(--sp-lg) var(--sp-md);
+      color: #fff;
+      text-align: center;
+      min-width: 200px;
+      opacity: 0;
+      animation: slideUp .7s .9s var(--ease) forwards;
+    }
+    .hero__card__icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green));
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      color: #fff;
+      margin: 0 auto var(--sp-sm);
+      box-shadow: 0 4px 16px rgba(24,165,88,.4);
+    }
+    .hero__card__label {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 4px;
+    }
+    .hero__card__time {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .hero__card__days {
+      font-size: .82rem;
+      color: rgba(255,255,255,.65);
+      font-weight: 500;
+    }
+    .hero__card__divider {
+      width: 40px; height: 1px;
+      background: rgba(255,255,255,.2);
+      margin: var(--sp-sm) auto;
+    }
+    .hero__card__open {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--green);
+    }
+    .hero__card__open span {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: blink 2s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: .3; }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─────────────────────────────────────────────
+       STATS
+    ───────────────────────────────────────────── */
+    .stats { background: var(--navy); padding: var(--sp-lg) 0; }
+    .stats__grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.06);
+    }
+    .stats__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: var(--sp-md) var(--sp-sm);
+      background: var(--navy);
+      transition: background var(--dur) var(--ease);
+    }
+    .stats__item:hover { background: #17305a; }
+    .stats__ico {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(24,165,88,.15);
+      border: 1px solid rgba(24,165,88,.25);
+      display: grid;
+      place-items: center;
+      color: var(--green);
+      font-size: 1.05rem;
+      flex-shrink: 0;
+    }
+    .stats__num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+    .stats__desc {
+      font-size: .75rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.5);
+      margin-top: 2px;
+    }
+
+    /* ─────────────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────────────── */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-2xl);
+      align-items: center;
+    }
+    .about__visual { position: relative; }
+    .about__frame {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--e-4);
+    }
+    .about__ph {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--blue-soft) 0%, var(--green-soft) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .75rem;
+    }
+    .about__ph i { font-size: 3.5rem; color: var(--blue); opacity: .35; }
+    .about__ph p { font-size: .83rem; color: var(--muted); text-align: center; line-height: 1.6; }
+
+    .about__badge {
+      position: absolute;
+      bottom: -1rem;
+      right: 1.5rem;
+      background: var(--green);
+      color: #fff;
+      border-radius: var(--r-md);
+      padding: var(--sp-sm) var(--sp-md);
+      text-align: center;
+      box-shadow: var(--e-3);
+      min-width: 110px;
+    }
+    .about__badge__num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .about__badge__sub {
+      font-size: .73rem;
+      font-weight: 600;
+      opacity: .82;
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    .about__features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .875rem;
+      margin-top: var(--sp-lg);
+    }
+    .fpill {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: var(--sp-md);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      transition: border-color var(--dur) var(--ease),
+                  box-shadow var(--dur) var(--ease),
+                  transform var(--dur) var(--ease);
+    }
+    .fpill:hover { border-color: var(--blue-mid); box-shadow: var(--e-2); transform: translateY(-2px); }
+    .fpill__ico {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+    .fpill__ico--b { background: var(--blue-soft); color: var(--blue); }
+    .fpill__ico--g { background: var(--green-soft); color: var(--green-dark); }
+    .fpill__title { font-size: .88rem; font-weight: 700; color: var(--heading); margin-bottom: 2px; }
+    .fpill__sub   { font-size: .78rem; color: var(--muted); line-height: 1.5; }
+
+    /* ─────────────────────────────────────────────
+       PRODUCTS
+    ───────────────────────────────────────────── */
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.25rem;
+      margin-top: var(--sp-xl);
+    }
+    .pc {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: transform var(--dur) var(--ease),
+                  box-shadow var(--dur) var(--ease),
+                  border-color var(--dur) var(--ease);
+      position: relative;
+    }
+    .pc:hover { transform: translateY(-5px); box-shadow: var(--e-3); border-color: transparent; }
+    .pc--star  { border: 2px solid var(--green); }
+    .pc--star:hover { border-color: var(--green); }
+
+    .pc__badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: var(--green);
+      color: #fff;
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: .28rem .72rem;
+      border-radius: var(--r-full);
+      z-index: 1;
+    }
+    .pc__thumb {
+      height: 144px;
+      display: grid;
+      place-items: center;
+      font-size: 3.2rem;
+    }
+    .pc__thumb[data-c="blue"]   { background: linear-gradient(135deg,#dbeafe,#bfdbfe); }
+    .pc__thumb[data-c="sky"]    { background: linear-gradient(135deg,#e0f2fe,#bae6fd); }
+    .pc__thumb[data-c="amber"]  { background: linear-gradient(135deg,#fef3c7,#fde68a); }
+    .pc__thumb[data-c="rose"]   { background: linear-gradient(135deg,#fce7f3,#fbcfe8); }
+    .pc__thumb[data-c="indigo"] { background: linear-gradient(135deg,#e0e7ff,#c7d2fe); }
+    .pc__thumb[data-c="green"]  { background: linear-gradient(135deg,#d1fae5,#a7f3d0); }
+    .pc__thumb[data-c="lime"]   { background: linear-gradient(135deg,#ecfccb,#d9f99d); }
+
+    .pc__body { padding: 1.1rem 1.3rem 1.4rem; }
+    .pc__name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--heading);
+      margin-bottom: .3rem;
+    }
+    .pc__desc { font-size: .84rem; color: var(--muted); line-height: 1.6; }
+    .pc__tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: .75rem; }
+    .ptag {
+      font-size: .7rem;
+      font-weight: 700;
+      background: var(--surface);
+      color: var(--muted);
+      padding: .18rem .6rem;
+      border-radius: var(--r-full);
+      border: 1px solid var(--border);
+    }
+
+    /* Wide card (dulces) */
+    .pc--wide {
+      grid-column: 1 / -1;
+    }
+    .pc--wide .pc__inner {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+    }
+    .pc--wide .pc__thumb {
+      height: 100%;
+      min-height: 120px;
+    }
+    .pc--wide .pc__body {
+      display: flex;
+      align-items: center;
+    }
+
+    /* ─────────────────────────────────────────────
+       GALLERY
+    ───────────────────────────────────────────── */
+    .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      grid-template-rows: repeat(2, 200px);
+      gap: .875rem;
+      margin-top: var(--sp-xl);
+    }
+    .gal-grid .gi:nth-child(1) {
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+    }
+    .gi {
+      border-radius: var(--r-md);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gi__fill {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform .5s var(--ease);
+    }
+    .gi:hover .gi__fill { transform: scale(1.05); }
+    .gi__fill i    { font-size: 2.2rem; opacity: .45; }
+    .gi__fill span { font-size: .78rem; font-weight: 700; opacity: .65; }
+    .gi:nth-child(1) .gi__fill { background: linear-gradient(135deg,#dbeafe,#bfdbfe); color: var(--navy); }
+    .gi:nth-child(2) .gi__fill { background: linear-gradient(135deg,#d1fae5,#a7f3d0); color: var(--green-dark); }
+    .gi:nth-child(3) .gi__fill { background: linear-gradient(135deg,#fef3c7,#fde68a); color: #78350f; }
+    .gi:nth-child(4) .gi__fill { background: linear-gradient(135deg,#fce7f3,#fbcfe8); color: #831843; }
+    .gi:nth-child(5) .gi__fill { background: linear-gradient(135deg,#e0e7ff,#c7d2fe); color: #3730a3; }
+
+    .gi__ov {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,39,68,.65) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity var(--dur) var(--ease);
+      display: flex;
+      align-items: flex-end;
+      padding: .875rem;
+    }
+    .gi:hover .gi__ov { opacity: 1; }
+    .gi__lbl {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 700;
+    }
+    .gal-note {
+      text-align: center;
+      font-size: .8rem;
+      color: var(--muted);
+      margin-top: var(--sp-md);
+    }
+
+    /* ─────────────────────────────────────────────
+       TESTIMONIALS
+    ───────────────────────────────────────────── */
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.25rem;
+      margin-top: var(--sp-xl);
+    }
+    .tc {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: var(--sp-lg);
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+    }
+    .tc:hover { transform: translateY(-4px); box-shadow: var(--e-3); }
+    .tc::before {
+      content: '\201C';
+      position: absolute;
+      top: -12px; right: 18px;
+      font-family: 'Playfair Display', serif;
+      font-size: 7rem;
+      font-weight: 900;
+      color: var(--blue-soft);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .tc__stars {
+      display: flex;
+      gap: 2px;
+      color: #f59e0b;
+      font-size: .85rem;
+      margin-bottom: var(--sp-sm);
+    }
+    .tc__text {
+      font-size: .92rem;
+      color: var(--body);
+      line-height: 1.75;
+      margin-bottom: var(--sp-md);
+      position: relative;
+      z-index: 1;
+    }
+    .tc__author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: var(--sp-sm);
+      border-top: 1px solid var(--border);
+    }
+    .av {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .av--b { background: linear-gradient(135deg, var(--blue-mid), var(--navy)); }
+    .av--g { background: linear-gradient(135deg, var(--green), var(--green-dark)); }
+    .av--t { background: linear-gradient(135deg, #0d9488, #0f766e); }
+    .tc__name { font-size: .9rem; font-weight: 700; color: var(--heading); }
+    .tc__role { font-size: .76rem; color: var(--muted); }
+
+    /* ─────────────────────────────────────────────
+       CONTACT
+    ───────────────────────────────────────────── */
+    .contact-sec {
+      background: var(--navy);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-sec::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(29,92,180,.22) 0%, transparent 70%);
+    }
+    .contact-sec::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(24,165,88,.18) 0%, transparent 70%);
+    }
+    .contact-sec .wrap { position: relative; z-index: 1; }
+    .contact-sec .tag  { color: rgba(255,255,255,.6); }
+    .contact-sec .tag::before { background: rgba(255,255,255,.4); }
+    .contact-sec .h2   { color: #fff; }
+    .contact-sec .lead { color: rgba(255,255,255,.6); }
+
+    .contact-cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.25rem;
+      margin-top: var(--sp-xl);
+    }
+    .ccard {
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--r-lg);
+      padding: var(--sp-lg) var(--sp-md);
+      text-align: center;
+      transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .ccard:hover { background: rgba(255,255,255,.12); transform: translateY(-3px); }
+    .ccard__ico {
+      width: 56px; height: 56px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.16);
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      color: var(--green);
+      margin: 0 auto var(--sp-md);
+    }
+    .ccard__title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .ccard__val {
+      font-size: .88rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.7;
+      margin-bottom: var(--sp-md);
+    }
+    .ccard__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--green);
+      color: #fff;
+      font-size: .8rem;
+      font-weight: 700;
+      padding: .48rem 1.1rem;
+      border-radius: var(--r-full);
+      transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .ccard__btn:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .ccard__open {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(24,165,88,.25);
+      border: 1px solid rgba(24,165,88,.4);
+      color: #4ade80;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .38rem .9rem;
+      border-radius: var(--r-full);
+    }
+    .ccard__open span {
+      width: 7px; height: 7px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: blink 2s infinite;
+    }
+
+    /* ─────────────────────────────────────────────
+       MAP
+    ───────────────────────────────────────────── */
+    .map-sec { padding: 0; }
+    .map-sec .wrap { padding-top: var(--sp-2xl); padding-bottom: var(--sp-lg); }
+    .map-frame {
+      width: 100%;
+      height: 440px;
+      border: none;
+      display: block;
+    }
+
+    /* ─────────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────────── */
+    footer {
+      background: #081a30;
+      color: rgba(255,255,255,.55);
+      padding: var(--sp-2xl) 0 var(--sp-lg);
+    }
+    .foot-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--sp-2xl);
+      padding-bottom: var(--sp-lg);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      margin-bottom: var(--sp-lg);
+    }
+    .foot-about {
+      font-size: .87rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,.45);
+      margin: var(--sp-md) 0 var(--sp-lg);
+    }
+    .foot-socials { display: flex; gap: .5rem; }
+    .foot-socials a {
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,.55);
+      font-size: .88rem;
+      transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    }
+    .foot-socials a:hover { background: var(--green); color: #fff; border-color: var(--green); }
+    .foot-title {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: var(--sp-md);
+    }
+    .foot-nav li { margin-bottom: .55rem; }
+    .foot-nav a {
+      font-size: .86rem;
+      color: rgba(255,255,255,.45);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition: color var(--dur) var(--ease);
+    }
+    .foot-nav a i { font-size: .7rem; color: var(--green); }
+    .foot-nav a:hover { color: #fff; }
+    .foot-info li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .86rem;
+      color: rgba(255,255,255,.45);
+      margin-bottom: .65rem;
+    }
+    .foot-info i { color: var(--green); font-size: .82rem; margin-top: 3px; flex-shrink: 0; }
+    .foot-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+      font-size: .8rem;
+    }
+
+    /* ─────────────────────────────────────────────
+       WHATSAPP FLOAT
+    ───────────────────────────────────────────── */
+    .wa {
+      position: fixed;
+      bottom: 1.75rem;
+      right: 1.75rem;
+      z-index: 800;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+    .wa__tip {
+      background: var(--navy);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .4rem .9rem;
+      border-radius: var(--r-full);
+      white-space: nowrap;
+      box-shadow: var(--e-2);
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(8px);
+      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    .wa:hover .wa__tip { opacity: 1; transform: translateX(0); }
+    .wa__btn {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 1.55rem;
+      box-shadow: 0 4px 20px rgba(37,211,102,.5);
+      transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+      position: relative;
+    }
+    .wa__btn::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 2px solid rgba(37,211,102,.45);
+      animation: waPulse 2.2s ease-in-out infinite;
+    }
+    .wa__btn:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,.6); }
+    @keyframes waPulse {
+      0%,100% { transform: scale(1); opacity: .8; }
+      50%     { transform: scale(1.22); opacity: 0; }
+    }
+
+    /* ─────────────────────────────────────────────
+       REVEAL ANIMATION
+    ───────────────────────────────────────────── */
+    [data-r] {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .6s var(--ease), transform .6s var(--ease);
+    }
+    [data-r].on {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─────────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero__layout { grid-template-columns: 1fr; }
+      .hero__card   { display: none; }
+      .about__grid  { grid-template-columns: 1fr; gap: var(--sp-xl); }
+      .about__badge { right: var(--sp-md); }
+    }
+    @media (max-width: 900px) {
+      .nav__links  { display: none; }
+      .nav__burger { display: flex; }
+      .stats__grid { grid-template-columns: repeat(2,1fr); }
+      .prod-grid   { grid-template-columns: repeat(2,1fr); }
+      .gal-grid    {
+        grid-template-columns: repeat(2,1fr);
+        grid-template-rows: auto;
+      }
+      .gal-grid .gi:nth-child(1) { grid-column: 1 / 3; grid-row: auto; }
+      .testi-grid   { grid-template-columns: repeat(2,1fr); }
+      .contact-cards { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
+      .foot-grid    { grid-template-columns: 1fr 1fr; gap: var(--sp-lg); }
+    }
+    @media (max-width: 600px) {
+      :root { --sp-2xl: 3.5rem; --sp-xl: 2.25rem; }
+      .prod-grid   { grid-template-columns: 1fr; }
+      .pc--wide .pc__inner { grid-template-columns: 1fr; }
+      .pc--wide .pc__thumb { height: 144px; }
+      .gal-grid    { grid-template-columns: 1fr; }
+      .gal-grid .gi:nth-child(1) { grid-column: 1; }
+      .gi { height: 160px; }
+      .testi-grid  { grid-template-columns: 1fr; }
+      .foot-grid   { grid-template-columns: 1fr; gap: var(--sp-lg); }
+      .foot-bottom { flex-direction: column; text-align: center; }
+      .hero__actions { flex-direction: column; align-items: flex-start; }
+      .hero__actions .btn { width: 100%; justify-content: center; }
+      .about__features { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 380px) {
+      .hero__chips .chip:nth-child(n+4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════ NAVBAR ══════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="wrap">
+      <div class="navbar__inner">
+
+        <a href="#inicio" class="logo" aria-label="Tienda La Esquina">
+          <div class="logo__mark"><i class="fas fa-store-alt"></i></div>
+          <span class="logo__name">Tienda La Esquina</span>
+        </a>
+
+        <ul class="nav__links">
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#productos">Productos</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#testimonios">Opiniones</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+          <li class="nav__cta">
+            <a href="https://wa.me/5255842356114" target="_blank" rel="noopener" class="btn btn--green btn--sm">
+              <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+          </li>
+        </ul>
+
+        <button class="nav__burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="nav__drawer" id="drawer" role="dialog" aria-label="Menú de navegación">
+      <a href="#nosotros"    onclick="closeNav()"><i class="fas fa-info-circle"></i> Nosotros</a>
+      <a href="#productos"   onclick="closeNav()"><i class="fas fa-boxes"></i> Productos</a>
+      <a href="#galeria"     onclick="closeNav()"><i class="fas fa-images"></i> Galería</a>
+      <a href="#testimonios" onclick="closeNav()"><i class="fas fa-star"></i> Opiniones</a>
+      <a href="#contacto"    onclick="closeNav()"><i class="fas fa-envelope"></i> Contacto</a>
+      <a href="https://wa.me/5255842356114" target="_blank" rel="noopener" class="nav__drawer__cta" onclick="closeNav()">
+        <i class="fab fa-whatsapp"></i> Escríbenos por WhatsApp
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="hero" id="inicio">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__dots"></div>
+      <div class="hero__orb hero__orb--1"></div>
+      <div class="hero__orb hero__orb--2"></div>
+      <div class="hero__orb hero__orb--3"></div>
+    </div>
+
+    <div class="hero__body">
+      <div class="wrap">
+        <div class="hero__layout">
+
+          <div class="hero__content">
+            <div class="hero__eyebrow">
+              <i class="fas fa-map-marker-alt"></i>
+              Calle Hidalgo 52 · Ciudad de México
+            </div>
+            <h1 class="display hero__title">Tienda<br><em>La Esquina</em></h1>
+            <p class="hero__desc">
+              Todo lo que necesitas, cerca de ti.<br>
+              Abarrotes, bebidas, snacks y más — abiertos todos los días para tu familia.
+            </p>
+            <div class="hero__actions">
+              <a href="https://wa.me/5255842356114" target="_blank" rel="noopener" class="btn btn--green">
+                <i class="fab fa-whatsapp"></i> Escríbenos al WhatsApp
+              </a>
+              <a href="#productos" class="btn btn--ghost">
+                <i class="fas fa-th-large"></i> Ver productos
+              </a>
+            </div>
+            <div class="hero__chips">
+              <span class="chip"><i class="fas fa-box"></i> Abarrotes</span>
+              <span class="chip"><i class="fas fa-wine-bottle"></i> Bebidas</span>
+              <span class="chip"><i class="fas fa-cookie-bite"></i> Snacks</span>
+              <span class="chip"><i class="fas fa-phone"></i> Recargas</span>
+              <span class="chip"><i class="fas fa-candy-cane"></i> Dulces</span>
+            </div>
+          </div>
+
+          <!-- Hours card — hidden on mobile via CSS grid collapse -->
+          <div class="hero__card">
+            <div class="hero__card__icon"><i class="fas fa-clock"></i></div>
+            <div class="hero__card__label">Horario</div>
+            <div class="hero__card__time">7 AM – 10 PM</div>
+            <div class="hero__card__days">Lunes a Domingo</div>
+            <div class="hero__card__divider"></div>
+            <div class="hero__card__open">
+              <span></span> Abierto todos los días
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ STATS ══════════════ -->
+  <div class="stats">
+    <div class="wrap">
+      <div class="stats__grid">
+        <div class="stats__item" data-r>
+          <div class="stats__ico"><i class="fas fa-clock"></i></div>
+          <div><div class="stats__num">15 hrs</div><div class="stats__desc">Atención diaria</div></div>
+        </div>
+        <div class="stats__item" data-r>
+          <div class="stats__ico"><i class="fas fa-calendar-check"></i></div>
+          <div><div class="stats__num">7 días</div><div class="stats__desc">Toda la semana</div></div>
+        </div>
+        <div class="stats__item" data-r>
+          <div class="stats__ico"><i class="fas fa-boxes"></i></div>
+          <div><div class="stats__num">+200</div><div class="stats__desc">Productos disponibles</div></div>
+        </div>
+        <div class="stats__item" data-r>
+          <div class="stats__ico"><i class="fas fa-heart"></i></div>
+          <div><div class="stats__num">100%</div><div class="stats__desc">Servicio amable</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ NOSOTROS ══════════════ -->
+  <section class="section" id="nosotros">
+    <div class="wrap">
+      <div class="about__grid">
+
+        <div class="about__visual" data-r>
+          <div class="about__frame">
+            <div class="about__ph">
+              <i class="fas fa-store-alt"></i>
+              <p>Foto de la tienda<br><small>Reemplaza con imagen real</small></p>
+            </div>
+          </div>
+          <div class="about__badge">
+            <div class="about__badge__num">+5</div>
+            <div class="about__badge__sub">Años<br>sirviendo</div>
+          </div>
+        </div>
+
+        <div data-r>
+          <div class="section__intro">
+            <p class="tag">Sobre nosotros</p>
+            <h2 class="h2">Tu tienda de confianza en el barrio</h2>
+            <p class="lead">
+              Tienda La Esquina es un negocio familiar que lleva años siendo parte del corazón de
+              nuestra colonia. Productos de calidad, precios justos y una atención cálida para
+              ti y tu familia.
+            </p>
+          </div>
+          <div class="about__features">
+            <div class="fpill">
+              <div class="fpill__ico fpill__ico--b"><i class="fas fa-tag"></i></div>
+              <div>
+                <div class="fpill__title">Precios accesibles</div>
+                <div class="fpill__sub">Los mejores precios del vecindario.</div>
+              </div>
+            </div>
+            <div class="fpill">
+              <div class="fpill__ico fpill__ico--g"><i class="fas fa-bolt"></i></div>
+              <div>
+                <div class="fpill__title">Atención rápida</div>
+                <div class="fpill__sub">Sin esperas, servicio ágil siempre.</div>
+              </div>
+            </div>
+            <div class="fpill">
+              <div class="fpill__ico fpill__ico--b"><i class="fas fa-calendar-alt"></i></div>
+              <div>
+                <div class="fpill__title">Abiertos 7 días</div>
+                <div class="fpill__sub">De 7 AM a 10 PM todos los días.</div>
+              </div>
+            </div>
+            <div class="fpill">
+              <div class="fpill__ico fpill__ico--g"><i class="fas fa-smile"></i></div>
+              <div>
+                <div class="fpill__title">Trato familiar</div>
+                <div class="fpill__sub">Te atendemos como en casa.</div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:var(--sp-lg);">
+            <a href="https://wa.me/5255842356114" target="_blank" rel="noopener" class="btn btn--blue">
+              <i class="fab fa-whatsapp"></i> Contáctanos ahora
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PRODUCTOS ══════════════ -->
+  <section class="section section--alt" id="productos">
+    <div class="wrap">
+      <div class="section__intro section__intro--c" data-r>
+        <p class="tag">Lo que ofrecemos</p>
+        <h2 class="h2">Nuestros productos</h2>
+        <p class="lead">Encuentra todo lo que necesitas en un solo lugar. Desde básicos del hogar hasta tus snacks favoritos.</p>
+      </div>
+
+      <div class="prod-grid">
+
+        <div class="pc pc--star" data-r>
+          <span class="pc__badge">⭐ Destacado</span>
+          <div class="pc__thumb" data-c="blue">🛒</div>
+          <div class="pc__body">
+            <div class="pc__name">Abarrotes</div>
+            <div class="pc__desc">Arroz, frijoles, azúcar, harina, aceite y todos los básicos que tu cocina necesita.</div>
+            <div class="pc__tags">
+              <span class="ptag">Arroz</span><span class="ptag">Frijoles</span>
+              <span class="ptag">Aceite</span><span class="ptag">Azúcar</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc pc--star" data-r>
+          <span class="pc__badge">⭐ Destacado</span>
+          <div class="pc__thumb" data-c="sky">🥤</div>
+          <div class="pc__body">
+            <div class="pc__name">Bebidas</div>
+            <div class="pc__desc">Refrescos, agua, jugos, leche y energéticas — siempre fríos y listos.</div>
+            <div class="pc__tags">
+              <span class="ptag">Refrescos</span><span class="ptag">Agua</span>
+              <span class="ptag">Jugos</span><span class="ptag">Leche</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc pc--star" data-r>
+          <span class="pc__badge">⭐ Destacado</span>
+          <div class="pc__thumb" data-c="amber">🍿</div>
+          <div class="pc__body">
+            <div class="pc__name">Snacks y Botanas</div>
+            <div class="pc__desc">Papas, palomitas, cacahuates, frituras y tus botanas favoritas.</div>
+            <div class="pc__tags">
+              <span class="ptag">Papas</span><span class="ptag">Frituras</span>
+              <span class="ptag">Palomitas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc" data-r>
+          <div class="pc__thumb" data-c="rose">🧴</div>
+          <div class="pc__body">
+            <div class="pc__name">Limpieza</div>
+            <div class="pc__desc">Detergentes, jabones, desinfectantes y todo para mantener tu hogar limpio.</div>
+            <div class="pc__tags">
+              <span class="ptag">Detergente</span><span class="ptag">Jabón</span><span class="ptag">Cloro</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc" data-r>
+          <div class="pc__thumb" data-c="indigo">🏠</div>
+          <div class="pc__body">
+            <div class="pc__name">Artículos del Hogar</div>
+            <div class="pc__desc">Focos, pilas, bolsas, papel y artículos de uso diario que siempre necesitas.</div>
+            <div class="pc__tags">
+              <span class="ptag">Pilas</span><span class="ptag">Bolsas</span><span class="ptag">Papel</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pc" data-r>
+          <div class="pc__thumb" data-c="green">📱</div>
+          <div class="pc__body">
+            <div class="pc__name">Recargas Telefónicas</div>
+            <div class="pc__desc">Todas las compañías: Telcel, AT&amp;T, Movistar, Unefon y más.</div>
+            <div class="pc__tags">
+              <span class="ptag">Telcel</span><span class="ptag">AT&T</span><span class="ptag">Movistar</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dulces — wide card -->
+        <div class="pc pc--wide" data-r>
+          <div class="pc__inner">
+            <div class="pc__thumb" data-c="lime">🍬</div>
+            <div class="pc__body">
+              <div>
+                <div class="pc__name">Dulces y Gomitas</div>
+                <div class="pc__desc">Mazapanes, pulparindos, tamarindos, gomitas y toda la dulcería clásica de siempre.</div>
+                <div class="pc__tags">
+                  <span class="ptag">Mazapán</span><span class="ptag">Pulparindo</span>
+                  <span class="ptag">Tamarindo</span><span class="ptag">Gomitas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ GALERÍA ══════════════ -->
+  <section class="section" id="galeria">
+    <div class="wrap">
+      <div class="section__intro section__intro--c" data-r>
+        <p class="tag">Nuestro espacio</p>
+        <h2 class="h2">Galería de la tienda</h2>
+        <p class="lead">Un espacio limpio y bien surtido, listo para recibirte a ti y a tu familia.</p>
+      </div>
+
+      <div class="gal-grid">
+        <div class="gi" data-r>
+          <div class="gi__fill"><i class="fas fa-store-alt"></i><span>Vista principal</span></div>
+          <div class="gi__ov"><span class="gi__lbl"><i class="fas fa-expand-alt"></i> Vista principal</span></div>
+        </div>
+        <div class="gi" data-r>
+          <div class="gi__fill"><i class="fas fa-wine-bottle"></i><span>Bebidas</span></div>
+          <div class="gi__ov"><span class="gi__lbl"><i class="fas fa-expand-alt"></i> Bebidas</span></div>
+        </div>
+        <div class="gi" data-r>
+          <div class="gi__fill"><i class="fas fa-box-open"></i><span>Abarrotes</span></div>
+          <div class="gi__ov"><span class="gi__lbl"><i class="fas fa-expand-alt"></i> Abarrotes</span></div>
+        </div>
+        <div class="gi" data-r>
+          <div class="gi__fill"><i class="fas fa-cookie-bite"></i><span>Snacks</span></div>
+          <div class="gi__ov"><span class="gi__lbl"><i class="fas fa-expand-alt"></i> Snacks</span></div>
+        </div>
+        <div class="gi" data-r>
+          <div class="gi__fill"><i class="fas fa-candy-cane"></i><span>Dulcería</span></div>
+          <div class="gi__ov"><span class="gi__lbl"><i class="fas fa-expand-alt"></i> Dulcería</span></div>
+        </div>
+      </div>
+
+      <p class="gal-note" data-r>
+        <i class="fas fa-info-circle"></i>
+        &nbsp;Reemplaza estas secciones con fotografías reales de tu tienda para un mayor impacto.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════ TESTIMONIOS ══════════════ -->
+  <section class="section section--alt" id="testimonios">
+    <div class="wrap">
+      <div class="section__intro section__intro--c" data-r>
+        <p class="tag">Lo que dicen de nosotros</p>
+        <h2 class="h2">Opiniones de nuestros vecinos</h2>
+        <p class="lead">La confianza de la colonia es lo que más nos importa.</p>
+      </div>
+
+      <div class="testi-grid">
+
+        <div class="tc" data-r>
+          <div class="tc__stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="tc__text">Siempre encuentro todo lo que necesito sin salir de la colonia. Los precios son muy buenos y la atención es excelente. ¡Mi tienda favorita desde hace años!</p>
+          <div class="tc__author">
+            <div class="av av--b">M</div>
+            <div>
+              <div class="tc__name">María González</div>
+              <div class="tc__role">Vecina de la colonia</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tc" data-r>
+          <div class="tc__stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+          <p class="tc__text">Paso todos los días a comprar mis refrescos y botanas. Siempre hay buen surtido y la atención es muy amable con todos los vecinos.</p>
+          <div class="tc__author">
+            <div class="av av--g">C</div>
+            <div>
+              <div class="tc__name">Carlos Ramírez</div>
+              <div class="tc__role">Cliente frecuente</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tc" data-r>
+          <div class="tc__stars">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          </div>
+          <p class="tc__text">Me encantan sus recargas y los dulces para mis hijos. La tienda tiene muchísimo surtido. Los recomiendo ampliamente con todos.</p>
+          <div class="tc__author">
+            <div class="av av--t">L</div>
+            <div>
+              <div class="tc__name">Laura Hernández</div>
+              <div class="tc__role">Mamá de familia</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CONTACTO ══════════════ -->
+  <section class="section contact-sec" id="contacto">
+    <div class="wrap">
+      <div class="section__intro section__intro--c" data-r>
+        <p class="tag">¿Cómo llegarnos?</p>
+        <h2 class="h2">Contacto y horarios</h2>
+        <p class="lead">Estamos cerca de ti. Visítanos o escríbenos cuando quieras.</p>
+      </div>
+
+      <div class="contact-cards">
+
+        <div class="ccard" data-r>
+          <div class="ccard__ico"><i class="fab fa-whatsapp"></i></div>
+          <div class="ccard__title">WhatsApp</div>
+          <div class="ccard__val">+52 55 8423 5614<br>Escríbenos cuando quieras</div>
+          <a href="https://wa.me/5255842356114" target="_blank" rel="noopener" class="ccard__btn">
+            <i class="fab fa-whatsapp"></i> Abrir WhatsApp
+          </a>
+        </div>
+
+        <div class="ccard" data-r>
+          <div class="ccard__ico"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="ccard__title">Dirección</div>
+          <div class="ccard__val">Calle Hidalgo 52<br>Ciudad de México</div>
+          <a href="https://maps.google.com/?q=Calle+Hidalgo+52,+Ciudad+de+Mexico" target="_blank" rel="noopener" class="ccard__btn">
+            <i class="fas fa-directions"></i> Cómo llegar
+          </a>
+        </div>
+
+        <div class="ccard" data-r>
+          <div class="ccard__ico"><i class="fas fa-clock"></i></div>
+          <div class="ccard__title">Horarios</div>
+          <div class="ccard__val">Lunes a Domingo<br>7:00 AM – 10:00 PM</div>
+          <div class="ccard__open"><span></span> Abierto todos los días</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ MAPA ══════════════ -->
+  <section class="map-sec" id="ubicacion">
+    <div class="wrap">
+      <div class="section__intro section__intro--c" data-r>
+        <p class="tag">Encuéntranos aquí</p>
+        <h2 class="h2">Nuestra ubicación</h2>
+      </div>
+    </div>
+    <iframe
+      class="map-frame"
+      src="https://maps.google.com/maps?q=Calle+Hidalgo+52,+Ciudad+de+M%C3%A9xico,+CDMX,+Mexico&z=16&output=embed"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Mapa – Tienda La Esquina, Calle Hidalgo 52, CDMX"
+    ></iframe>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a href="#inicio" class="logo">
+            <div class="logo__mark"><i class="fas fa-store-alt"></i></div>
+            <span class="logo__name">Tienda La Esquina</span>
+          </a>
+          <p class="foot-about">Tu tienda de confianza en la colonia. Productos de calidad a buen precio con un servicio rápido y amable para toda la familia.</p>
+          <div class="foot-socials">
+            <a href="https://facebook.com/TiendaLaEsquina" target="_blank" rel="noopener" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://wa.me/5255842356114" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="foot-title">Menú</div>
+          <ul class="foot-nav">
+            <li><a href="#nosotros"><i class="fas fa-chevron-right"></i> Sobre nosotros</a></li>
+            <li><a href="#productos"><i class="fas fa-chevron-right"></i> Productos</a></li>
+            <li><a href="#galeria"><i class="fas fa-chevron-right"></i> Galería</a></li>
+            <li><a href="#testimonios"><i class="fas fa-chevron-right"></i> Testimonios</a></li>
+            <li><a href="#contacto"><i class="fas fa-chevron-right"></i> Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="foot-title">Información</div>
+          <ul class="foot-info">
+            <li><i class="fas fa-map-marker-alt"></i><span>Calle Hidalgo 52,<br>Ciudad de México</span></li>
+            <li><i class="fas fa-clock"></i><span>Lun – Dom · 7 AM – 10 PM</span></li>
+            <li><i class="fab fa-whatsapp"></i><span>+52 55 8423 5614</span></li>
+            <li><i class="fab fa-facebook"></i><span>Tienda La Esquina</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2025 Tienda La Esquina. Todos los derechos reservados.</span>
+        <span>Hecho con ❤️ para el barrio</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════ WHATSAPP FLOAT ══════════════ -->
+  <div class="wa">
+    <div class="wa__tip" aria-hidden="true">¡Escríbenos!</div>
+    <a href="https://wa.me/5255842356114" target="_blank" rel="noopener" class="wa__btn" aria-label="Contactar por WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- ══════════════ JS ══════════════ -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── Navbar scroll (RAF-throttled) ── */
+    const navbar = document.getElementById('navbar');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          navbar.classList.toggle('is-scrolled', window.scrollY > 48);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    /* ── Mobile nav ── */
+    const burger = document.getElementById('burger');
+    const drawer = document.getElementById('drawer');
+
+    function openNav() {
+      burger.classList.add('is-open');
+      drawer.classList.add('is-open');
+      burger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    window.closeNav = function () {
+      burger.classList.remove('is-open');
+      drawer.classList.remove('is-open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    };
+
+    burger.addEventListener('click', () => {
+      drawer.classList.contains('is-open') ? closeNav() : openNav();
+    });
+
+    /* Close drawer on outside click */
+    document.addEventListener('click', e => {
+      if (drawer.classList.contains('is-open') &&
+          !drawer.contains(e.target) &&
+          !burger.contains(e.target)) {
+        closeNav();
+      }
+    });
+
+    /* Close drawer on scroll */
+    window.addEventListener('scroll', () => {
+      if (drawer.classList.contains('is-open')) closeNav();
+    }, { passive: true });
+
+    /* ── Scroll reveal with per-group stagger ── */
+    const items = document.querySelectorAll('[data-r]');
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el       = entry.target;
+        const siblings = [...el.parentElement.querySelectorAll('[data-r]')];
+        const idx      = siblings.indexOf(el);
+        el.style.transitionDelay = (idx * 90) + 'ms';
+        el.classList.add('on');
+        io.unobserve(el);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    items.forEach(el => io.observe(el));
+
+  })();
+  </script>
+</body>
+</html>
